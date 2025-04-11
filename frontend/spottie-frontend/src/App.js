@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import spottieLogo from './assets/images/spottie-logo.png';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -45,8 +46,10 @@ function App() {
         </div>
       </div>
 
+      <Footer />
 
     </div>
+
   );
 }
 
