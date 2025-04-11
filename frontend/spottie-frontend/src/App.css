@@ -1,0 +1,104 @@
+@font-face {
+  font-family: 'Outfit';
+  src: url('./assets/fonts/static/Outfit-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.App {
+  font-family: 'Outfit', sans-serif;
+}
+
+
+.App-header {
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  background-color: #FFD0EB;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.App-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFD0EB;
+  color: white;
+  padding: 4vh 8vw;
+  gap: 30px;
+}
+
+.welcome-left {
+  font-size: 8vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.App-tryNow {
+  text-align: center;
+  background-color: #003464;
+  height: 10vh;
+  width: 20vw;
+  border-radius: 10px;
+  margin-top: 4vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vh;
+}
+
+.spottie-img {
+  width: 30vw;
+  height: auto;
+  margin-right: 10vw;
+}
+
+
+.App-info-div{
+  text-align: center;
+  margin: 10vh
+}
+
+.App-info-title{
+  color: #003464;
+
+}
+
+.App-info{
+  color:black;
+}
+
+.App-about {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 5vw;
+  margin: 10vh 5vw;
+  flex-wrap: wrap; /* lets it stack on smaller screens */
+}
+
+.App-how-it-works,
+.App-why-spottie {
+  background-color: #f9f9f9;
+  color: #003464;
+  padding: 4vh 3vw;
+  border-radius: 15px;
+  width: 40%;
+  min-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.App-how-it-works:hover,
+.App-why-spottie:hover {
+  transform: translateY(-5px);
+}
