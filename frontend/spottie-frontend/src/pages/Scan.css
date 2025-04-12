@@ -1,0 +1,32 @@
+.scan-container {
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .scan-textarea {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: vertical;
+  }
+  
+  .scan-button {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    background-color: #003464;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .scan-button:hover {
+    background-color: #3f51b5;
+  }
+  

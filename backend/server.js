@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+app.use(cors()); // 👈 add this before routes
 
 const app = express();
 const port = 5000;
