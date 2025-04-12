@@ -22,6 +22,7 @@
   background-color: #FFD0EB;
 }
 
+
 .App-link {
   color: #61dafb;
 }
@@ -87,6 +88,10 @@
 }
 
 .App-how-it-works,
+.App-ai-you-can-trust,
+.App-instant-results-no-downloads,
+.App-made-for-everyone,
+.App-explainable-results,
 .App-why-spottie {
   background-color: #f9f9f9;
   padding: 4vh 3vw;
@@ -98,17 +103,30 @@
 }
 
 .App-how-it-works h2,
+.App-ai-you-can-trust h2,
+.App-instant-results-no-downloads h2,
+.App-made-for-everyone h2,
+.App-explainable-results h2,
 .App-why-spottie h2{
   color: #FC75C4;
 }
 
 .App-how-it-works p,
+.App-ai-you-can-trust p,
+.App-instant-results-no-downloads p,
+.App-made-for-everyone p,
+.App-explainable-results p,
 .App-why-spottie p{
   color: #003464;
 }
 
 
 .App-how-it-works:hover,
+.App-ai-you-can-trust:hover,
+.App-instant-results-no-downloads:hover,
+.App-made-for-everyone:hover,
+.App-explainable-results:hover,
 .App-why-spottie:hover {
   transform: translateY(-5px);
 }
+

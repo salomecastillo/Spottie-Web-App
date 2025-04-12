@@ -1,4 +1,6 @@
+// src/components/Navbar.js
 import React from 'react';
+import { Link } from 'react-router-dom'; // ✅ Use Link instead of <a>
 import './Navbar.css';
 
 const Navbar = () => {
@@ -8,13 +10,14 @@ const Navbar = () => {
         <h1>SPOTTIE</h1>
       </div>
       <ul className="navbar-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/scan">Scan</Link></li>
+        <li><Link to="/services">Services</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
       </ul>
     </nav>
   );
-}
+};
 
 export default Navbar;
+
