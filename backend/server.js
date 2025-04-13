@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 const OpenAI = require('openai');
 
 dotenv.config();
@@ -15,6 +16,10 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+// === Serve React Frontend ===
+app.use(express.static(path.join(__dirname, '../frontend/spottie-frontend/build')));
+
+// === API Route ===
 app.post('/api/scan', async (req, res) => {
   const { message } = req.body;
 
@@ -50,6 +55,11 @@ Message:
     console.error('OpenAI Error:', error.message);
     res.status(500).json({ error: 'Failed to scan message.' });
   }
+});
+
+// === Catch-all route to serve React app ===
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/spottie-frontend/build', 'index.html'));
 });
 
 app.listen(PORT, () => {
