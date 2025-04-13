@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
-import './Scan.css';
 
-function Scan() {
+const Scan = () => {
   const [input, setInput] = useState('');
-  const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
+  const [verdict, setVerdict] = useState('');
+  const [explanation, setExplanation] = useState('');
 
   const handleCheck = async () => {
     setLoading(true);
-    setResult(null);
+    setVerdict('');
+    setExplanation('');
 
     try {
-      const response = await fetch('http://localhost:5000/scan', {
+      const response = await fetch('http://localhost:3001/api/scan', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,14 +21,19 @@ function Scan() {
       });
 
       const data = await response.json();
+      console.log('🎯 Scan API Response:', data);
 
       if (response.ok) {
-        setResult(data);
+        setVerdict(data.verdict);
+        setExplanation(data.explanation);
       } else {
-        setResult({ error: data.error || 'Something went wrong.' });
+        setVerdict('Error');
+        setExplanation(data.error || 'Something went wrong.');
       }
-    } catch (error) {
-      setResult({ error: 'Unable to connect to backend.' });
+    } catch (err) {
+      console.error('❌ Error contacting backend:', err);
+      setVerdict('Error');
+      setExplanation('Failed to connect to the backend.');
     } finally {
       setLoading(false);
     }
@@ -39,35 +41,32 @@ function Scan() {
 
   return (
     <div className="scan-container">
-      <h1>Scan a Message</h1>
-      <p>Paste a suspicious message below and let Spottie check it for you:</p>
-
+      <h1>Scam Detection</h1>
       <textarea
-        className="scan-textarea"
-        placeholder="Paste your email, message, or link here..."
         value={input}
-        onChange={handleInputChange}
-        rows={10}
+        onChange={(e) => setInput(e.target.value)}
+        rows="4"
+        cols="50"
+        placeholder="Paste a suspicious message here"
       />
-
-      <button className="scan-button" onClick={handleCheck} disabled={loading}>
-        {loading ? 'Scanning...' : 'Check for Scams'}
+      <br />
+      <button onClick={handleCheck} disabled={loading}>
+        {loading ? 'Checking...' : 'Check Message'}
       </button>
 
-      {result && (
-        <div className="scan-result">
-          {result.error ? (
-            <p style={{ color: 'red' }}>{result.error}</p>
+      {verdict && (
+        <div style={{ marginTop: '20px' }}>
+          <h2>Scan Result:</h2>
+          {verdict === 'Scam' ? (
+            <p style={{ color: 'red' }}>⚠️ This message is a scam!</p>
           ) : (
-            <>
-              <p><strong>Risk Level:</strong> {result.riskLevel}</p>
-              <p><strong>Scam Probability:</strong> {(result.probability * 100).toFixed(1)}%</p>
-            </>
+            <p style={{ color: 'green' }}>✅ This message seems safe.</p>
           )}
+          <p><strong>Explanation:</strong> {explanation}</p>
         </div>
       )}
     </div>
   );
-}
+};
 
 export default Scan;

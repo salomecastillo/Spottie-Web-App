@@ -30,3 +30,11 @@
     background-color: #3f51b5;
   }
   
+  .scan-explanation {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f0f4ff;
+    border-left: 4px solid #3366cc;
+    border-radius: 4px;
+  }
+  
