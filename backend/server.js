@@ -12,8 +12,8 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// === OpenAI Setup ===
-const openai = new OpenAI({
+// === DeepAI Setup ===
+const openai = new DeepAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
@@ -55,12 +55,19 @@ if (process.env.NODE_ENV === 'production') {
   const clientPath = path.join(__dirname, '../frontend/spottie-frontend/build');
   app.use(express.static(clientPath));
 
-  // ✅ Safe catch-all route
+  // ✅ Safe catch-all route for serving React frontend
   app.get('*', function (req, res) {
     res.sendFile(path.join(clientPath, 'index.html'));
   });
 }
 
+// Basic error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+// Listen on the defined PORT
 app.listen(PORT, () => {
   console.log(`✅ Server is running on http://localhost:${PORT}`);
 });
