@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth'; // Import the auth hook
+import { auth } from '../firebase'; // Import the firebase auth instance
+import { Navigate } from 'react-router-dom'; // Import Navigate for redirection
 import './Scan.css';
 
 function Scan() {
   const [input, setInput] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [user, loadingUser] = useAuthState(auth); // Get the authentication state
+  
+  // Redirect to login page if the user is not logged in
+  if (loadingUser) {
+    return <div>Loading...</div>; // You can show a loading spinner while checking auth state
+  }
+
+  if (!user) {
+    return <Navigate to="/login" />; // Redirect to login if no user is authenticated
+  }
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
