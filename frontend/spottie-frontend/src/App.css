@@ -5,11 +5,9 @@
   font-style: normal;
 }
 
-
 .App {
   font-family: 'Outfit', sans-serif;
 }
-
 
 .App-header {
   min-height: auto;
@@ -21,7 +19,6 @@
   color: white;
   background-color: #FFD0EB;
 }
-
 
 .App-link {
   color: #61dafb;
@@ -55,6 +52,8 @@
   justify-content: center;
   align-items: center;
   font-size: 3vh;
+  color: white; /* Ensures the text inside the button is white */
+  cursor: pointer; /* Add cursor pointer for a clickable area */
 }
 
 .spottie-img {
@@ -63,19 +62,17 @@
   margin-right: 10vw;
 }
 
-
-.App-info-div{
+.App-info-div {
   text-align: center;
-  margin: 10vh
+  margin: 10vh;
 }
 
-.App-info-title{
+.App-info-title {
   color: #003464;
-
 }
 
-.App-info{
-  color:black;
+.App-info {
+  color: black;
 }
 
 .App-about {
@@ -84,7 +81,7 @@
   align-items: flex-start;
   gap: 5vw;
   margin: 10vh 5vw;
-  flex-wrap: wrap; /* lets it stack on smaller screens */
+  flex-wrap: wrap; /* Allows stacking on smaller screens */
 }
 
 .App-how-it-works,
@@ -107,7 +104,7 @@
 .App-instant-results-no-downloads h2,
 .App-made-for-everyone h2,
 .App-explainable-results h2,
-.App-why-spottie h2{
+.App-why-spottie h2 {
   color: #FC75C4;
 }
 
@@ -116,10 +113,9 @@
 .App-instant-results-no-downloads p,
 .App-made-for-everyone p,
 .App-explainable-results p,
-.App-why-spottie p{
+.App-why-spottie p {
   color: #003464;
 }
-
 
 .App-how-it-works:hover,
 .App-ai-you-can-trust:hover,
@@ -129,4 +125,3 @@
 .App-why-spottie:hover {
   transform: translateY(-5px);
 }
-
