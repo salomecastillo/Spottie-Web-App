@@ -4,22 +4,20 @@ const dotenv = require('dotenv');
 const path = require('path');
 const OpenAI = require('openai');
 
-// Load environment variables from .env
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Initialize OpenAI
+// === OpenAI Setup ===
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// === Endpoint to scan a message ===
+// === Scan Endpoint ===
 app.post('/api/scan', async (req, res) => {
   const { message } = req.body;
 
@@ -42,33 +40,27 @@ Message:
     });
 
     const aiResponse = completion.choices[0].message.content.trim();
-    console.log('🧠 AI Raw Response:\n', aiResponse);
-
-    const verdictMatch = aiResponse.match(/Verdict:\s*(.*)/i);
-    const explanationMatch = aiResponse.match(/Explanation:\s*([\s\S]*)/i);
-
-    const verdict = verdictMatch ? verdictMatch[1].trim() : 'Unknown';
-    const explanation = explanationMatch ? explanationMatch[1].trim() : 'No explanation found.';
+    const verdict = aiResponse.match(/Verdict:\s*(.*)/i)?.[1]?.trim() || 'Unknown';
+    const explanation = aiResponse.match(/Explanation:\s*([\s\S]*)/i)?.[1]?.trim() || 'No explanation found.';
 
     res.json({ verdict, explanation });
-  } catch (error) {
-    console.error('OpenAI Error:', error.message);
-    res.status(500).json({ error: 'Failed to scan message.' });
+  } catch (err) {
+    console.error('OpenAI error:', err);
+    res.status(500).json({ error: 'Failed to process message' });
   }
 });
 
-// === Serve React frontend in production ===
+// === Production Static Serving ===
 if (process.env.NODE_ENV === 'production') {
-  const buildPath = path.join(__dirname, '../frontend/spottie-frontend/build');
-  app.use(express.static(buildPath));
+  const clientPath = path.join(__dirname, '../frontend/spottie-frontend/build');
+  app.use(express.static(clientPath));
 
-  // Catch-all route to serve index.html (for React Router)
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(buildPath, 'index.html'));
+  // ✅ Safe catch-all route
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(clientPath, 'index.html'));
   });
 }
 
-// Start server
 app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`✅ Server is running on http://localhost:${PORT}`);
 });
