@@ -16,10 +16,6 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// === Serve React Frontend ===
-app.use(express.static(path.join(__dirname, '../frontend/spottie-frontend/build')));
-
-// === API Route ===
 app.post('/api/scan', async (req, res) => {
   const { message } = req.body;
 
@@ -57,10 +53,14 @@ Message:
   }
 });
 
-// === Catch-all route to serve React app ===
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/spottie-frontend/build', 'index.html'));
-});
+// ✅ Serve static files from React app in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/spottie-frontend/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/spottie-frontend/build', 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
