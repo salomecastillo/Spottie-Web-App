@@ -4,18 +4,22 @@ const dotenv = require('dotenv');
 const path = require('path');
 const OpenAI = require('openai');
 
+// Load environment variables from .env
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
+// Initialize OpenAI
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+// === Endpoint to scan a message ===
 app.post('/api/scan', async (req, res) => {
   const { message } = req.body;
 
@@ -26,10 +30,10 @@ app.post('/api/scan', async (req, res) => {
   try {
     const prompt = `You are a scam detector. Analyze the message below and respond in the following format:
 
-Verdict: Scam or Not a Scam
-Explanation: (a short explanation)
+Verdict: Scam or Not a Scam  
+Explanation: (a short explanation)  
 
-Message:
+Message:  
 "${message}"`;
 
     const completion = await openai.chat.completions.create({
@@ -53,15 +57,18 @@ Message:
   }
 });
 
-// ✅ Serve static files from React app in production
+// === Serve React frontend in production ===
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/spottie-frontend/build')));
+  const buildPath = path.join(__dirname, '../frontend/spottie-frontend/build');
+  app.use(express.static(buildPath));
 
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/spottie-frontend/build', 'index.html'));
+  // Catch-all route to serve index.html (for React Router)
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(buildPath, 'index.html'));
   });
 }
 
+// Start server
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
