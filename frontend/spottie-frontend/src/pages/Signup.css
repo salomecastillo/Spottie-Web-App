@@ -1,0 +1,85 @@
+/* src/pages/Signup.css */
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fefefe;
+  }
+  
+  .signup-form {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+  
+  .signup-form h2 {
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #333;
+  }
+  
+  .signup-form input {
+    width: 100%;
+    padding: 14px 16px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    background-color: #fafafa;
+  }
+  
+  .signup-form button {
+    width: 100%;
+    padding: 14px;
+    background-color: #ff5c8a;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .signup-form button:hover {
+    background-color: #e14c7b;
+  }
+  
+  .terms-text {
+    font-size: 13px;
+    color: #777;
+    margin-top: 16px;
+  }
+  
+  .terms-text span {
+    color: #ff5c8a;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .login-redirect {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .login-redirect a {
+    color: #ff5c8a;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .error-text {
+    color: red;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  

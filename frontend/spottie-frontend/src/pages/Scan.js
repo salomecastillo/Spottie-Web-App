@@ -1,10 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase';
+import { Navigate } from 'react-router-dom';
+import './Scan.css';
 
 const Scan = () => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [verdict, setVerdict] = useState('');
   const [explanation, setExplanation] = useState('');
+  const [user, loadingUser] = useAuthState(auth);
+
+  if (loadingUser) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+  };
 
   const handleCheck = async () => {
     setLoading(true);
@@ -44,7 +61,7 @@ const Scan = () => {
       <h1>Scam Detection</h1>
       <textarea
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={handleInputChange}
         rows="4"
         cols="50"
         placeholder="Paste a suspicious message here"
