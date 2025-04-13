@@ -49,16 +49,6 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <span className="eye-icon">👁️</span>
-          </div>
-          <div className="form-options">
-            <label>
-              <input type="checkbox" />
-              Remember me
-            </label>
-            <Link to="/forgot-password" className="forgot-password">
-              Forgot Password
-            </Link>
           </div>
           <button type="submit" className="login-btn">Login</button>
         </form>
@@ -66,12 +56,6 @@ const Login = () => {
         <p className="signup-link">
           Don’t have an account? <Link to="/signup">Sign up</Link>
         </p>
-        <div className="divider">Or login with</div>
-        <div className="social-login">
-          <button className="social-btn facebook">f</button>
-          <button className="social-btn google">G</button>
-          <button className="social-btn apple"></button>
-        </div>
       </div>
       <div className="login-right">
       <img src={login} alt="Login" className="login-img" />
