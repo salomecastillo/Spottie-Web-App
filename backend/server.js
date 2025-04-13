@@ -59,10 +59,10 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(clientPath));
 
   // ✅ Safe catch-all route for serving React frontend
-  app.get('*', function (req, res) {
-    res.sendFile(path.join(clientPath, 'index.html'));
-  });
-}
+  //app.get('*', function (req, res) {
+   // res.sendFile(path.join(clientPath, 'index.html'));
+  //});
+//}
 
 // Basic error handling middleware
 app.use((err, req, res, next) => {
