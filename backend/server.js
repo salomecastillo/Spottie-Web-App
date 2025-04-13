@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
-const { Configuration, OpenAIApi } = require('openai'); // Use this instead of importing DeepAI directly
+const { OpenAI } = require('openai'); // Import OpenAI directly
 
 dotenv.config();
 
@@ -12,11 +12,10 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// === DeepAI Setup ===
-const configuration = new Configuration({
+// === OpenAI Setup ===
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-const openai = new OpenAIApi(configuration);
 
 // === Scan Endpoint ===
 app.post('/api/scan', async (req, res) => {
@@ -35,12 +34,12 @@ Explanation: (a short explanation)
 Message:  
 "${message}"`;
 
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
     });
 
-    const aiResponse = completion.data.choices[0].message.content.trim();
+    const aiResponse = completion.choices[0].message.content.trim();
     const verdict = aiResponse.match(/Verdict:\s*(.*)/i)?.[1]?.trim() || 'Unknown';
     const explanation = aiResponse.match(/Explanation:\s*([\s\S]*)/i)?.[1]?.trim() || 'No explanation found.';
 
