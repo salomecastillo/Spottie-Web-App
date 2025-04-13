@@ -1,127 +1,131 @@
-/* Ensure the container takes the full height of the viewport */
-body, html {
-    height: 100%;
-    font-family: Arial, sans-serif;
-  }
-  
-  .scan-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Ensure the content stays at the top */
-    min-height: 100vh; /* Make the container take up the full height of the viewport */
-  }
-  
-  .scan-container {
-    margin: 50vh;
-    padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #ffe6f7; /* Light pink background */
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+body {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    background-color: #fff;
+   }
+   
+   
+   .scan-header {
+    background-color: #ec6bae;
+    padding: 15px 0;
     text-align: center;
-    flex-grow: 1; /* Ensures the content takes up the available space and pushes footer down */
-  }
-  
-  .scan-container h1 {
-    color: #d31d67; /* Rich pink for the header */
-    font-size: 2rem;
-    margin-bottom: 50vh;
-  }
-  
-  .scan-textarea {
-    width: 100%;
-    padding: 1.2rem;
-    font-size: 1.1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    border: 1px solid #f5a7c0; /* Soft pink border */
-    resize: vertical;
-    min-height: 120px;
-    background-color: #ffffff; /* White background for input */
-    color: #333;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
-  }
-  
-  .scan-textarea:focus {
-    border-color: #d31d67; /* Change border to pink when focused */
-  }
-  
-  .scan-button {
-    padding: 0.75rem 2rem;
-    font-size: 1.2rem;
-    background-color: #d31d67; /* Strong pink background */
+   }
+   
+   
+   .scan-header nav a {
+    margin: 0 15px;
     color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+   }
+   
+   
+   .scan-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 20px;
+    gap: 40px;
+   }
+   
+   
+   .scan-box {
+    background-color: #f8cce7;
+    padding: 40px;
+    border-radius: 40px;
+    width: 600px;
+   }
+   
+   
+   .scan-box h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c001e;
+   }
+   
+   
+   .scan-box textarea {
+    width: 100%;
+    height: 200px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #fceef6;
+    font-size: 16px;
+    resize: none;
+   }
+   
+   
+   .scan-box button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: white;
+    color: #2c001e;
+    font-weight: bold;
+    font-size: 16px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .scan-button:hover {
-    background-color: #e74c9d; /* Lighter pink on hover */
-  }
-  
-  .scan-button:disabled {
-    background-color: #f5a7c0; /* Disabled button in soft pink */
-    cursor: not-allowed;
-  }
-  
-  .scan-explanation {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background-color: #fce0f0; /* Soft pink background for explanation */
-    border-left: 6px solid #d31d67; /* Bold pink border on left */
-    border-radius: 8px;
-    color: #d31d67;
-    font-size: 1rem;
-    text-align: left;
-  }
-  
-  .scan-result {
-    margin-top: 2rem;
-    font-size: 1.2rem;
-    color: #003464;
-  }
-  
-  .scan-result p {
-    margin: 0.5rem 0;
-  }
-  
-  .scan-result .scam {
-    color: #ff6f61; /* Red for scam warning */
-  }
-  
-  .scan-result .safe {
-    color: #2ecc71; /* Green for safe message */
-  }
-  
-  /* Footer positioning */
-  .scan-footer {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   }
+   
+   
+   .scan-box button:hover {
+    background-color: #f2f2f2;
+   }
+   
+   
+   .result-box {
+    margin-top: 30px;
+   }
+   
+   
+   .scam {
+    color: #ff6f61;
+    font-weight: bold;
+   }
+   
+   
+   .safe {
+    color: #2ecc71;
+    font-weight: bold;
+   }
+   
+   
+   .robot-side {
+    position: relative;
+    max-width: 300px;
     text-align: center;
-    padding: 1rem;
-    background-color: #d31d67;
-    color: white;
-    font-size: 1rem;
-    border-top: 3px solid #f5a7c0; /* Light pink border */
-    margin-top: auto; /* Push the footer to the bottom */
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .scan-container {
-      padding: 1rem;
-    }
-  
-    .scan-textarea {
-      font-size: 0.9rem;
-    }
-  
-    .scan-button {
-      font-size: 1rem;
-      padding: 0.6rem 1.5rem;
-    }
-  }
-  
+   }
+   
+   
+   .speech-bubble {
+    background-color: #f8cce7;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #2c001e;
+   }
+   
+   
+   .speech-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 40%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: #f8cce7;
+   }
+   
+   
+   .robot-img {
+    width: 200px;
+    height: auto;
+   }
+   
