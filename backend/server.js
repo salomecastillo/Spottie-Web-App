@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
-const { OpenAI } = require('openai'); // Import OpenAI directly
+const { OpenAI } = require('openai'); // Import OpenAI correctly
 
 dotenv.config();
 
@@ -34,15 +34,18 @@ Explanation: (a short explanation)
 Message:  
 "${message}"`;
 
+    // Make the OpenAI API request correctly
     const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
     });
 
+    // Extract the response
     const aiResponse = completion.choices[0].message.content.trim();
     const verdict = aiResponse.match(/Verdict:\s*(.*)/i)?.[1]?.trim() || 'Unknown';
     const explanation = aiResponse.match(/Explanation:\s*([\s\S]*)/i)?.[1]?.trim() || 'No explanation found.';
 
+    // Send the response
     res.json({ verdict, explanation });
   } catch (err) {
     console.error('OpenAI error:', err);
